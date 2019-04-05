@@ -52,10 +52,7 @@ spring:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-            hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-            hibernate.cache.hazelcast.instance_name: hacknarok
-            hibernate.cache.use_minimal_puts: true
-            hibernate.cache.hazelcast.use_lite_member: true
+            hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
     liquibase:
         contexts: dev
     mail:
@@ -67,18 +64,9 @@ spring:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:
         cache: false
-    sleuth:
-        sampler:
-            probability: 1 # report 100% of traces
-    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
-        base-url: http://localhost:9411
-        enabled: false
-        locator:
-            discovery:
-                enabled: true
 
 server:
-    port: 8081
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties
@@ -90,33 +78,24 @@ jhipster:
     http:
         version: V_1_1 # To use HTTP/2 you will need to activate TLS (see application-tls.yml)
     cache: # Cache configuration
-        hazelcast: # Hazelcast distributed cache
-            time-to-live-seconds: 3600
-            backup-count: 1
-            management-center: # Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
-                enabled: false
-                update-interval: 3
-                url: http://localhost:8180/mancenter
-    # CORS is disabled by default on microservices, as you should access them through a gateway.
-    # If you want to enable it, please uncomment the configuration below.
-    # cors:
-        # allowed-origins: "*"
-        # allowed-methods: "*"
-        # allowed-headers: "*"
-        # exposed-headers: "Authorization,Link,X-Total-Count"
-        # allow-credentials: true
-        # max-age: 1800
+        ehcache: # Ehcache configuration
+            time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+            max-entries: 100 # Number of objects in each cache entry
+    # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
+    cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+        allowed-headers: "*"
+        exposed-headers: "Link,X-Total-Count"
+        allow-credentials: true
+        max-age: 1800
     security:
-        authentication:
-            jwt:
-                # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-                base64-secret: M2M3ZGFmNTgzMjBiMTU3YzYwN2E0Zjk1MGVhNTg1MzJkMjVhZWFkMjQxMzgwOWU3ZDI2NTFjOTIzNjQxZWNkOTgxMmJhZjg0NWRjZDYxMDMyNDUyOWI4YWFiMWZkZDcyZDIxZDIxNmQ2NTMwYjdmOWMxNDdjNTJkNTU4Yzc1MTQ=
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
-                token-validity-in-seconds-for-remember-me: 2592000
+        remember-me:
+            # security key (this key should be unique for your application, and kept secret)
+            key: 3b7892ca7a6617b4d76e06725fa2e37c6988c86eb914c3c1ba1ae5189e73b8c827043eac7ea5f83e6b4b35769a6143677dae
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: hacknarok@localhost
-        base-url: http://127.0.0.1:8081
+        base-url: http://127.0.0.1:8080
     metrics:
         logs: # Reports metrics in the logs
             enabled: false
