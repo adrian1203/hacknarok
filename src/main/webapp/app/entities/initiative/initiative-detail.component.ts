@@ -22,5 +22,12 @@ export class InitiativeDetailComponent implements OnInit {
 
     constructor(private initiativeService: InitiativeService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.event = new Event();
+        this.initiativeService.getEventById(1053);
+    }
+
+    previousState() {
+        window.history.back();
+    }
 }

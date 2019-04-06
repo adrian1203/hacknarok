@@ -26,11 +26,9 @@ export class InitiativeAddComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.event = new Event();
-        console.log('Zapisjejeeeeeeeee');
     }
 
     public save() {
-        console.log('Zapisjejeeeeeeeee');
         this.initiativeService.createEvent(this.event).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
     }
 
