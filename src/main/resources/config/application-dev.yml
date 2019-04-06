@@ -39,6 +39,7 @@ spring:
         url: jdbc:postgresql://localhost:5432/hacknarok
         username: postgres
         password: haslo
+
         hikari:
             poolName: Hikari
             auto-commit: false
