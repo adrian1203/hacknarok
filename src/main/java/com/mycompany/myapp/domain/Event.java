@@ -129,12 +129,12 @@ public class Event implements Serializable {
     @Column(name = "rating")
     private Double rating;
 
-    public Set<User> getStudents() {
-        return students;
+    public Set<User> getParticipants() {
+        return participants;
     }
 
-    public void setStudents(Set<User> students) {
-        this.students = students;
+    public void setParticipants(Set<User> participants) {
+        this.participants = participants;
     }
 
     @ManyToMany(
@@ -146,7 +146,7 @@ public class Event implements Serializable {
         joinColumns=@JoinColumn(name = "event_id"),
         inverseJoinColumns=@JoinColumn(name = "user_id")
     )
-    private Set<User> students=new HashSet<>();
+    private Set<User> participants=new HashSet<>();
 
     @OneToMany(mappedBy = "event")
     private Set<Images> images=new HashSet<>();
