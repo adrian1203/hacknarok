@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,6 +49,7 @@ public class EventResource {
             throw new BadRequestAlertException("A new event cannot already have an ID", "userManagement", "idexists");
         } else {
             event.setCreator(userService.getUserWithAuthorities().get());
+            event.setCreateDate(new Date());
             Event newEvent = eventService.createEvent(event);
             return ResponseEntity.created(new URI("/api/events/" + newEvent.getId()))
                 .headers(HeaderUtil.createAlert( "A event is created with identifier " + newEvent.getId(), "TEST"))
