@@ -129,6 +129,17 @@ public class Event implements Serializable {
     @Column(name = "rating")
     private Double rating;
 
+    @Column(name="rating_number")
+    private Integer rating_number;
+
+    public Integer getRating_number() {
+        return rating_number;
+    }
+
+    public void setRating_number(Integer rating_number) {
+        this.rating_number = rating_number;
+    }
+
     public Set<User> getParticipants() {
         return participants;
     }

@@ -62,4 +62,11 @@ public class EventResource {
         Event event = eventService.addUserToEvent(eventId, userId);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
+
+    @PostMapping("/event/{eventId}/rating")
+    public ResponseEntity<Event> addEventRating(@PathVariable("eventId") long eventId,@Valid @RequestBody Integer rate) throws URISyntaxException{
+        log.debug("REST request to add Rating : {}", rate);
+
+        return new ResponseEntity<>(eventService.addRating(eventId, rate),HttpStatus.OK);
+    }
 }

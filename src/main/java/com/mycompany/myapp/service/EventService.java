@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.spec.ECField;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -55,11 +56,23 @@ public class EventService {
         Optional<User> user = userService.getUserWithAuthorities(userId);
         Optional<Event> event = eventRepository.findById(eventId);
 
-        Set events = event.get().getParticipants();
-        events.add(user);
+        Set<User> participants = event.get().getParticipants();
+        participants.add(user.get());
 
-        event.get().setParticipants(events);
+        event.get().setParticipants(participants);
+        eventRepository.save(event.get());
+        return event.get();
+    }
 
+    public Event addRating(Long eventId, Integer rate){
+        Optional<Event> event=eventRepository.findById(eventId);
+        Double oldRate=event.get().getRating();
+        Integer oldRateNumber=event.get().getRating_number();
+
+        Double newRate=(oldRate*oldRateNumber+rate)/(oldRate+1);
+        event.get().setRating(newRate);
+        event.get().setRating_number(oldRateNumber+1);
+        eventRepository.save(event.get());
         return event.get();
     }
 
