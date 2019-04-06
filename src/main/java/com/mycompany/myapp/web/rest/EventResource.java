@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Event;
+import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.service.EventService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
@@ -17,6 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -62,4 +64,25 @@ public class EventResource {
         Event event = eventService.addUserToEvent(eventId, userId);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
+
+    @PostMapping("/event/{eventId}/rating")
+    public ResponseEntity<Event> addEventRating(@PathVariable("eventId") long eventId,@Valid @RequestBody Integer rate) throws URISyntaxException{
+        log.debug("REST request to add Rating : {}", rate);
+
+        return new ResponseEntity<>(eventService.addRating(eventId, rate),HttpStatus.OK);
+    }
+
+    @PostMapping("/event/{eventId}/attend")
+    public ResponseEntity<Event> attendEvent(@PathVariable("eventId") long eventId){
+        Event event = eventService.attendEvent(eventId);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @GetMapping("/eveny/{eventId}/participants")
+    public ResponseEntity<Set<User>> getParticipants(@PathVariable("eventId") Long eventId){
+        Set<User> participants = eventService.getParticipants(eventId);
+        return new ResponseEntity<>(participants, HttpStatus.OK);
+    }
+
+
 }
