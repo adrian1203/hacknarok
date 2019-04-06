@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InitiativeService } from 'app/entities/initiative/initiative.service';
 import { Event } from 'app/entities/initiative/initiative.model';
 import { User } from 'app/core';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-initiative-detail',
@@ -20,11 +21,19 @@ export class InitiativeDetailComponent implements OnInit {
     description: string;
     rating: number;
 
-    constructor(private initiativeService: InitiativeService) {}
+    constructor(private initiativeService: InitiativeService, private router: ActivatedRoute) {}
 
     ngOnInit() {
         this.event = new Event();
-        this.initiativeService.getEventById(1053);
+        this.router.snapshot.paramMap.get('id');
+        console.log(this.router.snapshot.paramMap.get('id'));
+        let id = parseInt(this.router.snapshot.paramMap.get('id'));
+        //console.log(this.router.snparams['id']);
+        console.log(id);
+        this.initiativeService.getEventById(id).subscribe(res => {
+            console.log(res);
+            this.event = res;
+        });
     }
 
     previousState() {
