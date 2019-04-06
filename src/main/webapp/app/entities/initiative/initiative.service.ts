@@ -23,8 +23,13 @@ export class InitiativeService {
         return this.http.post<Event>(SERVER_API_URL + 'api/event', event, { observe: 'response' });
     }
 
-    addToEvent(id: number) {
+    addToEvent(id: number): Observable<HttpResponse<Event>> {
         console.log('Dodaje ');
-        this.http.post<Event>(SERVER_API_URL + 'api/event', event, { observe: 'response' });
+        //return this.http.post<Event>(SERVER_API_URL + 'api/event', event, { observe: 'response' });
+        return this.http.post<Event>(SERVER_API_URL + 'api/event/' + id + '/attend', null, { observe: 'response' });
+    }
+
+    saveNote(note: number, id: number) {
+        return this.http.post<Event>(SERVER_API_URL + 'api/event/' + id + '/rating', note, { observe: 'response' });
     }
 }

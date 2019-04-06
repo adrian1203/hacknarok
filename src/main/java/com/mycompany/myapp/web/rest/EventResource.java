@@ -78,7 +78,7 @@ public class EventResource {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @GetMapping("/eveny/{eventId}/participants")
+    @GetMapping("/event/{eventId}/participants")
     public ResponseEntity<Set<User>> getParticipants(@PathVariable("eventId") Long eventId){
         Set<User> participants = eventService.getParticipants(eventId);
         return new ResponseEntity<>(participants, HttpStatus.OK);
