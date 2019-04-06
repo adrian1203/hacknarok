@@ -77,5 +77,5 @@ public class EventResource {
         return new ResponseEntity<>(participants, HttpStatus.OK);
     }
 
-    
+
 }
