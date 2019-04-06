@@ -43,7 +43,7 @@ public class CommentResource {
     public ResponseEntity<List<Comment>> getEventComments(@PathVariable("eventId") long eventId) {
         return new ResponseEntity<>(commentService.findEventComments(eventId), HttpStatus.OK);
     }
-    
+
 
 
 }
