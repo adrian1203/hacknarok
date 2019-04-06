@@ -1,14 +1,16 @@
 import { User } from 'app/core';
 
 export class Event {
-    id?: any;
-    creator?: User;
-    createDate?: Date;
-    startDate?: Date;
-    endDate?: Date;
-    latitude?: number;
-    longtitude?: number;
-    title?: string;
-    description?: string;
-    rating?: number;
+    constructor(
+        public id?: any,
+        public creator?: User,
+        public createDate?: Date,
+        public startDate?: Date,
+        public endDate?: Date,
+        public latitude?: number,
+        public longtitude?: number,
+        public title?: string,
+        public description?: string,
+        public rating?: number
+    ) {}
 }

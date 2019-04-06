@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InitiativeService } from 'app/entities/initiative/initiative.service';
 
 @Component({
     selector: 'jhi-initiative-detail',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styles: []
 })
 export class InitiativeDetailComponent implements OnInit {
-    constructor() {}
+    constructor(private initativeService: InitiativeService) {}
 
     ngOnInit() {}
 }
