@@ -21,6 +21,7 @@ export class InitiativeDetailComponent implements OnInit {
     description: string;
     rating: number;
     comments: string[];
+    id: number;
 
     constructor(private initiativeService: InitiativeService, private router: ActivatedRoute) {}
 
@@ -28,17 +29,20 @@ export class InitiativeDetailComponent implements OnInit {
         this.event = new Event();
         this.router.snapshot.paramMap.get('id');
         console.log(this.router.snapshot.paramMap.get('id'));
-        let id = parseInt(this.router.snapshot.paramMap.get('id'));
+        this.id = parseInt(this.router.snapshot.paramMap.get('id'));
         //console.log(this.router.snparams['id']);
-        console.log(id);
-        this.initiativeService.getEventById(id).subscribe(res => {
+        console.log(this.id);
+        this.initiativeService.getEventById(this.id).subscribe(res => {
             console.log(res);
             this.event = res;
         });
     }
 
     previousState() {
-        console.log('dupcia');
         window.history.back();
+    }
+
+    addToEvent() {
+        this.initiativeService.addToEvent(this.id);
     }
 }
