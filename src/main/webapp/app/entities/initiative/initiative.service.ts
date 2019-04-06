@@ -11,14 +11,14 @@ export class InitiativeService {
     constructor(private http: HttpClient) {}
 
     getEvent(): Observable<Event[]> {
-        return this.http.get<Event[]>(SERVER_API_URL + 'events');
+        return this.http.get<Event[]>(SERVER_API_URL + 'api/events');
     }
 
     getEventById(id: number) {
-        return this.http.get<Event>(SERVER_API_URL + 'event/' + id);
+        return this.http.get<Event>(SERVER_API_URL + 'api/event/' + id);
     }
 
     createEvent(event: Event): Observable<HttpResponse<Event>> {
-        return this.http.post<Event>(SERVER_API_URL + event, event, { observe: 'response' });
+        return this.http.post<Event>(SERVER_API_URL + 'api/event', event, { observe: 'response' });
     }
 }
