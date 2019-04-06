@@ -43,12 +43,12 @@ public class EventResource {
         return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/events/{id}")
+    @GetMapping("/event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable("id") long id){
         return ResponseUtil.wrapOrNotFound(eventService.findById(id));
     }
 
-    @PostMapping("/events")
+    @PostMapping("/event")
     public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to save User : {}", event);
 
@@ -62,4 +62,9 @@ public class EventResource {
         }
     }
 
+    @GetMapping("/event/{eventId}/{userId}")
+    public ResponseEntity<Event> addUserToEvent(@PathVariable("eventId") long eventId, @PathVariable("userId") long userId){
+        Event event = eventService.addUserToEvent(eventId, userId);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
 }
