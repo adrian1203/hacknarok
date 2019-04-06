@@ -76,4 +76,17 @@ public class EventService {
         return event.get();
     }
 
+    public Event attendEvent(Long eventId){
+        Event event = this.findById(eventId).get();
+        Set<User>  participants = event.getParticipants();
+        participants.add(userService.getUserWithAuthorities().get());
+        event.setParticipants(participants);
+        eventRepository.save(event);
+        return event;
+    }
+
+    public Set<User> getParticipants(Long eventId){
+        return eventRepository.findById(eventId).get().getParticipants();
+    }
+
 }
