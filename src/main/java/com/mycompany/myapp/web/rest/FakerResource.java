@@ -6,6 +6,7 @@ import com.mycompany.myapp.domain.Authority;
 import com.mycompany.myapp.domain.Event;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.AuthorityRepository;
+import com.mycompany.myapp.repository.EventRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.service.EventService;
@@ -24,10 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/faker")
@@ -43,17 +41,19 @@ public class FakerResource {
     private final PasswordEncoder passwordEncoder;
     private final AuthorityRepository authorityRepository;
     private final UserRepository userRepository;
+    private final EventRepository eventRepository;
 
     private final UserService userService;
     private final Logger log = LoggerFactory.getLogger(UserResource.class);
 
-    public FakerResource(EventService eventService, UserService userService, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, UserRepository userRepository){
+    public FakerResource(EventService eventService, UserService userService, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, UserRepository userRepository, EventRepository eventRepository){
 
         this.eventService = eventService;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
 
     }
 
@@ -98,11 +98,24 @@ public class FakerResource {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<Event> fakeEvents(){
+    public ResponseEntity<String> fakeEvents(){
+        User user = userRepository.findById(new Long(3)).get();
+        for (int i = 0; i < 1; i++) {
+            Event newEvent = new Event();
+            newEvent.setDescription("TEST");
+            newEvent.setTitle("TYTUŁ");
+            newEvent.setStartDate(new Date());
+            newEvent.setEndDate(new Date());
+            newEvent.setRating(4.4);
+            newEvent.setCreateDate(new Date());
+            newEvent.setCreator(user);
+            newEvent.setLatitude(4.2);
+            newEvent.setLongitude(4.4);
+            eventRepository.save(newEvent);
+        }
 
 
-
-        return ResponseUtil.wrapOrNotFound(eventService.findById(new Long(123)));
+        return new ResponseEntity<>("DODAŁEM EVENTY MORDECZKO", HttpStatus.OK);
     }
 
 }
