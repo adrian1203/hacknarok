@@ -42,7 +42,13 @@ public class CommentService {
     public List<Comment> findEventComments(Long eventId){
         List<Comment> comments = commentRepository.findAll();
         return comments.stream().filter(comment -> comment.getEvent().getId() == eventId).collect(Collectors.toList());
+    }
 
 
+    public Comment addComment(Comment comment){
+        comment.setCreator(userService.getUserWithAuthorities().get());
+        comment.setCreateDate(new Date());
+        commentRepository.save(comment);
+        return comment;
     }
 }

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,11 @@ public class CommentResource {
         return new ResponseEntity<>(commentService.findEventComments(eventId), HttpStatus.OK);
     }
 
+    @PostMapping("/comment")
+    public ResponseEntity<Comment> createEvent(@Valid @RequestBody Comment comment) throws URISyntaxException {
+        log.debug("REST request to add Comment : {}", comment);
 
-
+        
+        return new ResponseEntity<>(commentService.addComment(comment),HttpStatus.OK);
+    }
 }
