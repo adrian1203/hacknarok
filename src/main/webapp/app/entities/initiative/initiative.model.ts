@@ -1,15 +1,14 @@
+import { User } from 'app/core';
+
 export class Event {
     id?: any;
-    login?: string;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    activated?: boolean;
-    langKey?: string;
-    authorities?: any[];
-    createdBy?: string;
-    createdDate?: Date;
-    lastModifiedBy?: string;
-    lastModifiedDate?: Date;
-    password?: string;
+    creator?: User;
+    createDate?: Date;
+    startDate?: Date;
+    endDate?: Date;
+    latitude?: number;
+    longtitude?: number;
+    title?: string;
+    description?: string;
+    rating?: number;
 }
