@@ -72,4 +72,8 @@ public class EventService {
         return event;
     }
 
+    public Set<User> getParticipants(Long eventId){
+        return eventRepository.findById(eventId).get().getParticipants();
+    }
+
 }
