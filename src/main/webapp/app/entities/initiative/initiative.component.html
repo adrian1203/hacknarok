@@ -9,17 +9,19 @@
     </button>
 </h2>
 <div>
-    <div class="table-responsive" *ngIf="events">
+    <div class="table-responsive" >
         <table class="table table-striped">
            
-        </table>
-    </div>
-<!--    <tr *ngFor="let event of events">-->
-<!--        <div>-->
-<!--            Siemka działam xD-->
-<!--        </div>-->
+       <tbody *ngIf="events">
+        <tr *ngFor="let event of events;">
+            <!-- <div>
+                Siemka działam xD
+            </div> -->
+            {{event.id}}
 
-<!--    </tr>-->
+        </tr>
+       </tbody>
+
     <!-- <div *ngIf="ofertaZakupus">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
@@ -28,7 +30,9 @@
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div> -->
+</table>
 
+</div>
 </div>
 
 
