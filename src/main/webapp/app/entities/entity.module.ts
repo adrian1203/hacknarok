@@ -5,12 +5,13 @@ import { entitiesState } from 'app/entities/entities.route';
 import { InitiativeDetailComponent } from 'app/entities/initiative/initiative-detail.component';
 import { InitiativeAddComponent } from 'app/entities/initiative/initiative-add.component';
 import { HacknarokSharedModule } from 'app/shared';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule],
+    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule, HttpClientModule],
     declarations: [InitiativeComponent, InitiativeDetailComponent, InitiativeAddComponent],
     entryComponents: [],
-    providers: [],
+    providers: [InitiativeDetailComponent, HttpClientModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HacknarokEntityModule {}
