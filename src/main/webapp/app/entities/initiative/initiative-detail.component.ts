@@ -21,6 +21,7 @@ export class InitiativeDetailComponent implements OnInit {
     description: string;
     rating: number;
     id: number;
+    note: number;
 
     constructor(private initiativeService: InitiativeService, private router: ActivatedRoute) {}
 
@@ -44,6 +45,13 @@ export class InitiativeDetailComponent implements OnInit {
     addToEvent() {
         console.log('Dodaje');
 
-        this.initiativeService.addToEvent(this.id);
+        this.initiativeService.addToEvent(this.id).subscribe(res => {
+            console.log(res);
+        });
+    }
+    saveNote() {
+        this.initiativeService.saveNote(this.note, this.id).subscribe(res => {
+            console.log(res);
+        });
     }
 }

@@ -164,7 +164,8 @@ public class Event implements Serializable {
 
 
     @ManyToMany(
-        targetEntity=User.class,
+        fetch = FetchType.EAGER,
+       // targetEntity=User.class,
         cascade=CascadeType.ALL
     )
     @JoinTable(
