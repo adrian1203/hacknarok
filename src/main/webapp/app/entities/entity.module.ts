@@ -3,10 +3,11 @@ import { RouterModule } from '@angular/router';
 import { InitiativeComponent } from 'app/entities/initiative/initiative.component';
 import { entitiesState } from 'app/entities/entities.route';
 import { InitiativeDetailComponent } from 'app/entities/initiative/initiative-detail.component';
+import { InitiativeAddComponent } from 'app/entities/initiative/initiative-add.component';
 
 @NgModule({
     imports: [RouterModule.forChild(entitiesState)],
-    declarations: [InitiativeComponent, InitiativeDetailComponent],
+    declarations: [InitiativeComponent, InitiativeDetailComponent, InitiativeAddComponent],
     entryComponents: [],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

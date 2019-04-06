@@ -8,7 +8,9 @@ import { SERVER_API_URL } from 'app/app.constants';
 export class InitiativeService {
     constructor(private http: HttpClient) {}
 
-    getEvent(): Observable<Event> {
-        return this.http.get<Event>(SERVER_API_URL + 'events');
+    getEvent(): Observable<Event[]> {
+        return this.http.get<Event[]>(SERVER_API_URL + 'events');
     }
+
+    getEventById(id: number) {}
 }

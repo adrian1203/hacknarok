@@ -16,14 +16,14 @@ export const InitiativeDetailRoute: Route = {
     path: 'initiative/:id',
     component: InitiativeDetailComponent,
     data: {
-        pageTitle: 'Inicjatywy'
+        pageTitle: 'Inicjatywy szczegóły'
     }
 };
 
 export const InitiativeAddRoute: Route = {
-    path: 'initiative/:id',
+    path: 'initiative-add',
     component: InitiativeAddComponent,
     data: {
-        pageTitle: 'Inicjatywy'
+        pageTitle: 'Inicjatywy tworzenie'
     }
 };
