@@ -137,6 +137,19 @@ public class Event implements Serializable {
         this.participants = participants;
     }
 
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @OneToMany(mappedBy = "event")
+    private Set<Comment> comments = new HashSet<>();
+
+
+
     @ManyToMany(
         targetEntity=User.class,
         cascade=CascadeType.ALL
