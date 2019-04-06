@@ -42,7 +42,7 @@ public class EventResource {
         return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/users")
+    @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to save User : {}", event);
 

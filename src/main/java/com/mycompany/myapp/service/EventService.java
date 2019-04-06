@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class EventService {
 
     private final EventRepository eventRepository;
-    private final Logger log = LoggerFactory.getLogger(UserService.class);
+    private final Logger log = LoggerFactory.getLogger(EventService.class);
 
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
