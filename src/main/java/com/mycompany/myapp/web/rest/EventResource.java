@@ -62,4 +62,9 @@ public class EventResource {
         }
     }
 
+    @GetMapping("/event/{eventId}/{userId}")
+    public ResponseEntity<Event> addUserToEvent(@PathVariable("eventId") long eventId, @PathVariable("userId") long userId){
+        Event event = eventService.addUserToEvent(eventId, userId);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
 }

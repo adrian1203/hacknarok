@@ -29,10 +29,12 @@ import java.util.stream.Collectors;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final UserService userService;
     private final Logger log = LoggerFactory.getLogger(EventService.class);
 
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository, UserService userService) {
         this.eventRepository = eventRepository;
+        this.userService = userService;
     }
 
     public List<Event> findAll() {
@@ -47,6 +49,18 @@ public class EventService {
 
     public Optional<Event> findById(Long id){
         return eventRepository.findById(id);
+    }
+
+    public Event addUserToEvent(long eventId, long userId){
+        Optional<User> user = userService.getUserWithAuthorities(userId);
+        Optional<Event> event = eventRepository.findById(eventId);
+
+        Set events = event.get().getParticipants();
+        events.add(user);
+
+        event.get().setParticipants(events);
+
+        return event.get();
     }
 
 }
