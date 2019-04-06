@@ -19,6 +19,7 @@ export class InitiativeService {
     }
 
     createEvent(event: Event): Observable<HttpResponse<Event>> {
+        console.log('Zapiusjeeeeeeeeee');
         return this.http.post<Event>(SERVER_API_URL + 'api/event', event, { observe: 'response' });
     }
 }

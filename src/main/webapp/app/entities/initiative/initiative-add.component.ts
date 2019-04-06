@@ -13,9 +13,15 @@ export class InitiativeAddComponent implements OnInit {
 
     ngOnInit() {
         this.event = new Event();
+        this.event.title = 'TESTUJEMY';
+        console.log('Zapisjejeeeeeeeee');
+        this.save();
     }
 
     public save() {
-        this.initiativeService.createEvent(this.event);
+        console.log('Zapisjejeeeeeeeee');
+        this.initiativeService.createEvent(this.event).subscribe(res => {
+            console.log(res);
+        });
     }
 }

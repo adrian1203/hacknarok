@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-sm">
                    <h3>Tytuł:  <b>{{event.title}}</b></h3>
-                 <b>Data rozpoczęcia:</b>  {{event.startDate}} <br>
-                  <b>Data zakończenia:</b>  {{event.endDate}}   <br>
+                 <b>Data rozpoczęcia:</b>  {{event.startDate | date:'dd/MM/yy HH:mm'}} <br>
+                  <b>Data zakończenia:</b>  {{event.endDate | date:'dd/MM/yy HH:mm'}}   <br>
                 </div>
                 <div class="col-sm">
                     <br>
