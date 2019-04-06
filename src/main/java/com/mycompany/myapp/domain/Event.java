@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "event")
@@ -40,11 +42,30 @@ public class Event extends AbstractAuditingEntity implements Serializable {
     @Column(name = "title", length = 256)
     private String title;
 
-
     @Size(max = 256)
     @Column(name = "description", length = 256)
     private String description;
 
     @Column(name = "rating")
     private Double rating;
+
+    public Set<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<User> students) {
+        this.students = students;
+    }
+
+    @ManyToMany(
+        targetEntity=User.class,
+        cascade=CascadeType.ALL
+    )
+    @JoinTable(
+        name="user_event",
+        joinColumns=@JoinColumn(name = "event_id"),
+        inverseJoinColumns=@JoinColumn(name = "user_id")
+    )
+    private Set<User> students=new HashSet<>();
+
 }
