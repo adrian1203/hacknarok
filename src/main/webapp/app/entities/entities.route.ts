@@ -1,13 +1,13 @@
 import { UserRouteAccessService } from 'app/core';
 import { Routes } from '@angular/router';
-import { InciativeRoute } from 'app/entities/inciative/inciative.router';
+import { InitiativeRoute } from 'app/entities/initiative/initiative.route';
 
-const INICIATIVE_ROUTES = [InciativeRoute];
+const INITIATIVE_ROUTES = [InitiativeRoute];
 
 export const entitiesState: Routes = [
     {
         path: '',
         canActivate: [UserRouteAccessService],
-        children: INICIATIVE_ROUTES
+        children: INITIATIVE_ROUTES
     }
 ];
