@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HOME_ROUTE } from 'app/home';
 import { InciativeRoute } from 'app/entities/inciative/inciative.router';
 
-@NgModule({
-    declarations: [InciativeComponent],
-    imports: [CommonModule, HacknarokSharedModule, RouterModule.forChild([InciativeRoute])]
-})
-export class InciativeModule {}
+// @NgModule({
+//     declarations: [InciativeComponent],
+//     imports: [CommonModule, HacknarokSharedModule, RouterModule.forChild([InciativeRoute])]
+// })
+// export class InciativeModule {}
