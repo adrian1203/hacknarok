@@ -4,9 +4,10 @@ import { InitiativeComponent } from 'app/entities/initiative/initiative.componen
 import { entitiesState } from 'app/entities/entities.route';
 import { InitiativeDetailComponent } from 'app/entities/initiative/initiative-detail.component';
 import { InitiativeAddComponent } from 'app/entities/initiative/initiative-add.component';
+import { HacknarokSharedModule } from 'app/shared';
 
 @NgModule({
-    imports: [RouterModule.forChild(entitiesState)],
+    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule],
     declarations: [InitiativeComponent, InitiativeDetailComponent, InitiativeAddComponent],
     entryComponents: [],
     providers: [],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InitiativeService } from './initiative.service';
+import { Event } from './initiative.model';
 
 @Component({
     selector: 'jhi-initiative',
