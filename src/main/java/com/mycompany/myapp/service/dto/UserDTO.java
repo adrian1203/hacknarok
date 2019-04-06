@@ -53,6 +53,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private Integer points;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -73,6 +75,7 @@ public class UserDTO {
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
+        this.points=user.getPoints();
     }
 
     public Long getId() {
@@ -179,6 +182,14 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -194,6 +205,7 @@ public class UserDTO {
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
+            ", points=" + points +
             "}";
     }
 }

@@ -9,6 +9,8 @@
     <!--<include file="config/liquibase/changelog/0604201917001.sql" relativeToChangelogFile="false"/>-->
 
     <include file="config/liquibase/changelog/06042019193300.sql" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/0604201919071.sql" relativeToChangelogFile="false"/>
+
 
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
