@@ -37,8 +37,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/hacknarok
-        username: hacknarok
-        password:
+        username: postgres
+        password: haslo
         hikari:
             poolName: Hikari
             auto-commit: false
@@ -98,11 +98,11 @@ jhipster:
         base-url: http://127.0.0.1:8080
     metrics:
         logs: # Reports metrics in the logs
-            enabled: false
+            enabled: true
             report-frequency: 60 # in seconds
     logging:
         logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
-            enabled: false
+            enabled: true
             host: localhost
             port: 5000
             queue-size: 512

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InciativeService } from 'app/entities/inciative/inciative.service';
 
 @Component({
     selector: 'jhi-inciative',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
     styles: []
 })
 export class InciativeComponent implements OnInit {
-    constructor() {}
+    constructor(private inciativeService: InciativeService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.inciativeService.getEvent().subscribe(res => {
+            console.log(res);
+        });
+    }
 }
