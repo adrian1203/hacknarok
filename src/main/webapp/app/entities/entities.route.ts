@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { InitiativeDetailRoute, InitiativeRoute } from 'app/entities/initiative/initiative.route';
 
 const INITIATIVE_ROUTES = [InitiativeRoute];
-const INICIATIVE_DETAIL_ROUTES = [InitiativeDetailRoute];
+const INITIATIVE_DETAIL_ROUTES = [InitiativeDetailRoute];
 
 export const entitiesState: Routes = [
     {
@@ -14,6 +14,6 @@ export const entitiesState: Routes = [
     {
         path: '',
         canActivate: [UserRouteAccessService],
-        children: INICIATIVE_DETAIL_ROUTES
+        children: INITIATIVE_DETAIL_ROUTES
     }
 ];
