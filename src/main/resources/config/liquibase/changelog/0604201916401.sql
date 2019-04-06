@@ -5,7 +5,7 @@
 -- Table: events
 CREATE TABLE event (
     id bigint  NOT NULL,
-    creator bigint  NOT NULL,
+    creator_id bigint  NOT NULL,
     adddate date  NOT NULL,
     startdate date  NOT NULL,
     enddate date  NOT NULL,
