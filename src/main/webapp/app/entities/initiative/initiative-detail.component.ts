@@ -19,6 +19,7 @@ export class InitiativeDetailComponent implements OnInit {
     title: string;
     description: string;
     rating: number;
+    comments: string[];
 
     constructor(private initiativeService: InitiativeService) {}
 

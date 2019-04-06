@@ -31,6 +31,20 @@
                 <dt><span>Longtitude</span></dt>
                 <dd>{{event.longtitude}}</dd>
 
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr *ngFor="let comment of event.comments">
+                            <td><a [routerLink]="['./', comment.creator.login, 'view']">{{comment.creator.id}}</a></td>
+                            <td>{{comment.creator.login}}</td>
+                            <td>{{comment.creator.email}}</td>
+                            <td>{{comment.content}}</td>
+                            <td>{{comment.createDate | date:'dd/MM/yy HH:mm'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <dd>
                     <ul class="list-unstyled">
                         <li *ngFor="let authority of creator.authorities">
