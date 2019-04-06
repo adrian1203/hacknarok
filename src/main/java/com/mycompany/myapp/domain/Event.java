@@ -161,4 +161,14 @@ public class Event implements Serializable {
     )
     private Set<User> participants=new HashSet<>();
 
+    @OneToMany(mappedBy = "event")
+    private Set<Images> images=new HashSet<>();
+
+    public Set<Images> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Images> images) {
+        this.images = images;
+    }
 }
