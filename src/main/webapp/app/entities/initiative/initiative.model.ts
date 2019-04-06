@@ -12,7 +12,8 @@ export class Event {
         public title?: string,
         public description?: string,
         public rating?: number,
-        public comments?: Comment[]
+        public comments?: Comment[],
+        public participants?: User[]
     ) {}
 }
 
