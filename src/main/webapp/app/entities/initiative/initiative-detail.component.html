@@ -1,3 +1,49 @@
-<p>
-  initiative-detail works!
-</p>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="creator">
+            <h2>
+                <span>User</span> [<b>{{creator.login}}</b>]
+            </h2>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nazwa inicjatywy</span></dt>
+                <dd>{{event.title}}</dd>
+                <dt><span>Opis inicjatywy</span></dt>
+                <dd>{{event.description}}</dd>
+                <dt><span>Organizator</span></dt>
+                <dd>
+                    <span>{{creator.login}}</span>
+                    <jhi-boolean
+                        [value]="creator.activated"
+                        textTrue="Activated"
+                        textFalse="Deactivated">
+                    </jhi-boolean>
+                </dd>
+                <dt><span>Ocena</span></dt>
+                <dd>{{event.rating}}</dd>
+                <dt><span>Data utworzenia</span></dt>
+                <dd>{{event.createDate}}</dd>
+                <dt><span>Data rozpoczęcia</span></dt>
+                <dd>{{event.startDate}}</dd>
+                <dt><span>Data zakończenia</span></dt>
+                <dd>{{event.endDate}}</dd>
+                <dt><span>Latitude</span></dt>
+                <dd>{{event.latitude}}</dd>
+                <dt><span>Longtitude</span></dt>
+                <dd>{{event.longtitude}}</dd>
+
+                <dd>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let authority of creator.authorities">
+                            <span class="badge badge-info">{{authority}}</span>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <button type="submit"
+                    routerLink="../../"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </div>
+    </div>
+</div>
