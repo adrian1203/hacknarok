@@ -11,6 +11,7 @@ import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
 import com.mycompany.myapp.web.rest.errors.LoginAlreadyUsedException;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import com.mycompany.myapp.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,11 @@ public class EventResource {
     @GetMapping("/events")
     public ResponseEntity<List<Event>> getAllEvents() {
         return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/events/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable("id") long id){
+        return ResponseUtil.wrapOrNotFound(eventService.findById(id));
     }
 
     @PostMapping("/events")
