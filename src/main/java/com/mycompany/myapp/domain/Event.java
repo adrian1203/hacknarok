@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "event")
-public class Event extends AbstractAuditingEntity implements Serializable {
+public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
