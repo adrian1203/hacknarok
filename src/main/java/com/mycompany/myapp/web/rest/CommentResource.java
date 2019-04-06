@@ -49,7 +49,7 @@ public class CommentResource {
     public ResponseEntity<Comment> createEvent(@Valid @RequestBody Comment comment) throws URISyntaxException {
         log.debug("REST request to add Comment : {}", comment);
 
-        
+
         return new ResponseEntity<>(commentService.addComment(comment),HttpStatus.OK);
     }
 }
