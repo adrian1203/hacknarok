@@ -30,6 +30,7 @@ export class InitiativeService {
     }
 
     saveNote(note: number, id: number) {
-        return this.http.post<Event>(SERVER_API_URL + 'api/event/' + id + '/rating', note, { observe: 'response' });
+        console.log(note);
+        return this.http.post<Event>(SERVER_API_URL + 'api/event/' + id + '/rating/' + note, null, { observe: 'response' });
     }
 }
