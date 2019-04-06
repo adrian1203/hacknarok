@@ -9,13 +9,13 @@ import { Event } from 'app/entities/initiative/initiative.model';
 })
 export class InitiativeAddComponent implements OnInit {
     event: Event;
-    constructor(private initativeService: InitiativeService) {}
+    constructor(private initiativeService: InitiativeService) {}
 
     ngOnInit() {
         this.event = new Event();
     }
 
     public save() {
-        this.initativeService.createEvent(this.event);
+        this.initiativeService.createEvent(this.event);
     }
 }

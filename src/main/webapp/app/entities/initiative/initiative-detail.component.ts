@@ -7,7 +7,7 @@ import { InitiativeService } from 'app/entities/initiative/initiative.service';
     styles: []
 })
 export class InitiativeDetailComponent implements OnInit {
-    constructor(private initativeService: InitiativeService) {}
+    constructor(private initiativeService: InitiativeService) {}
 
     ngOnInit() {}
 }
