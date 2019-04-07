@@ -7,7 +7,7 @@ import { LoginModalService, AccountService, Account } from 'app/core';
 @Component({
     selector: 'jhi-home',
     templateUrl: './home.component.html',
-    styleUrls: ['home.scss']
+    styleUrls: ['home.scss', 'home1.css']
 })
 export class HomeComponent implements OnInit {
     account: Account;
