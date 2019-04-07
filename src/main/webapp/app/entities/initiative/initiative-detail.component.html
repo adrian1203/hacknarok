@@ -1,10 +1,11 @@
-
 <div>
-<button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
-    <fa-icon [icon]="'plus'"></fa-icon> <span>Przyłącz się ;)</span>
-</button>
+    <h2>Szczegóły inicjatywy</h2>
+    <button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
+        <fa-icon [icon]="'user-plus'"></fa-icon>
+        <span>Przyłącz się :)</span>
+    </button>
 </div>
-<div class="row-md jh-entity-details" >
+<div class="row-md jh-entity-details">
     <dt><span>Oceń inicjatywę</span></dt>
     <ngb-rating [(rate)]="currentRate">
         <ng-template let-fill="fill" let-index="index">
@@ -36,34 +37,69 @@
                 <dt><span>Longtitude</span></dt>
                 <dd>{{event.longtitude}}</dd>
                 <dt>Zapisani użytkownicy</dt>
-
+            </dl>
         </div>
     </div>
 </div>
 <p class="font-weight-bold">Zdjęcia</p>
-<div class="row"  >
-        <div class="col-sm" >
-            <img src="../../../content/images/las3.jpg"alt="" style="margin:10px;">
-        </div>
-        <div class="col-sm">
-                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+<div class="row">
+    <div class="col-sm">
+        <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+    </div>
+    <div class="col-sm">
+        <img src="../../../content/images/smog.jpg" alt="" style="margin:10px;">
 
-        </div>
-        <div class="col-sm">
-                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+    </div>
+    <div class="col-sm">
+        <img src="../../../content/images/las4.jpg" alt="" style="margin:10px;">
 
-        </div>
-      </div>
+    </div>
+</div>
 
 
 <p class="font-weight-bold">Zapisani użytkownicy</p>
-<div class="row"  >
-        <div *ngFor="let user of event.participants;" class="col-sm-3 border border-primary"  >
-            Imię <b>{{user.firstName}}</b> <br>
-            Nazwisko <b>{{user.lastName}}</b><br>
-        </div>
-      </div>
+<div class="row" style="margin: 10px;">
+    <div *ngFor="let user of event.participants;" class="col-sm-3 border border-primary">
+        Imię <b>{{user.firstName}}</b> <br>
+        Nazwisko <b>{{user.lastName}}</b><br>
+        Zebrane punkty <b>{{user.points}}</b><br>
 
+    </div>
+</div>
+<div>
+<p class="font-weight-bold">Komentarze dla inicjatywy</p>
+<form class="form-inline" role="form">
+    <div class="row">
+        <div class="form-group col-md-8">
+            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+
+                <input type="text" class="form-control" placeholder="Napisz komentarz" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-3">
+                <button class="btn btn-primary jh-create-entity">
+                        <fa-icon [icon]="'fa-search'"></fa-icon> <span>Publikuj</span>
+                    </button>
+        </div>
+        <div></div>
+        <br>
+
+    </div>
+    </form>
+<div *ngFor="let comment of event.comments;" class="row border border-primary" style="margin: 10px;">
+    <div  class="col-sm-3">
+        Imię <b>{{comment.creator.firstName}}</b> <br>
+        Nazwisko <b>{{comment.creator.lastName}}</b><br>
+        Data <b>{{comment.createDate}}</b><br>
+    </div>
+    <div  class="col-sm-3" >
+        <p class="font-weight-bold">Treść:</p>
+            {{comment.content}}
+
+    </div>
+</div>
+</div>
 <div>
     <button type="submit"
             routerLink="../"
