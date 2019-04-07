@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
-import { Event } from 'app/entities/initiative/initiative.model';
+import { Event, Comment } from 'app/entities/initiative/initiative.model';
 import { IUser } from 'app/core';
 
 @Injectable({ providedIn: 'root' })
@@ -32,5 +32,10 @@ export class InitiativeService {
     saveNote(note: number, id: number) {
         console.log(note);
         return this.http.post<Event>(SERVER_API_URL + 'api/event/' + id + '/rating/' + note, null, { observe: 'response' });
+    }
+
+    saveComment(comment: any): Observable<HttpResponse<Comment>> {
+        console.log(comment);
+        return this.http.post<Event>(SERVER_API_URL + 'api/comment', comment, { observe: 'response' });
     }
 }

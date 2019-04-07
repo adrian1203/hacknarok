@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InitiativeService } from 'app/entities/initiative/initiative.service';
-import { Event } from 'app/entities/initiative/initiative.model';
+import { Event, Comment } from 'app/entities/initiative/initiative.model';
 import { User } from 'app/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 
@@ -22,6 +22,7 @@ export class InitiativeDetailComponent implements OnInit {
     rating: number;
     id: number;
     note: number;
+    comment: Comment;
 
     constructor(private initiativeService: InitiativeService, private router: ActivatedRoute) {}
 
@@ -31,9 +32,21 @@ export class InitiativeDetailComponent implements OnInit {
         this.initiativeService.getEventById(this.id).subscribe(res => {
             console.log(res);
             this.event = res;
+            this.comment = new Comment();
+            this.comment.event = res;
+            console.log(this.comment);
         });
     }
 
+    loadAll() {
+        this.initiativeService.getEventById(this.id).subscribe(res => {
+            console.log(res);
+            this.event = res;
+            this.comment = new Comment();
+            this.comment.event = res;
+            console.log(this.comment);
+        });
+    }
     previousState() {
         window.history.back();
     }
@@ -48,6 +61,14 @@ export class InitiativeDetailComponent implements OnInit {
     saveNote() {
         this.initiativeService.saveNote(this.note, this.id).subscribe(res => {
             console.log(res);
+        });
+    }
+    addComment() {
+        console.log(this.comment);
+        this.initiativeService.saveComment(this.comment).subscribe(res => {
+            console.log(res);
+            this.comment = new Comment();
+            this.loadAll();
         });
     }
 }

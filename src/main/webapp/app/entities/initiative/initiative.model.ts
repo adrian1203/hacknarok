@@ -11,6 +11,12 @@ export class Event {
         public longtitude?: number,
         public title?: string,
         public description?: string,
-        public rating?: number
+        public rating?: number,
+        public comments?: Comment[],
+        public participants?: User[]
     ) {}
+}
+
+export class Comment {
+    constructor(public id?: any, public creator?: User, public event?: Event, public createDate?: Date, public content?: string) {}
 }
