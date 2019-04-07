@@ -16,7 +16,7 @@ export class InitiativeDetailComponent implements OnInit {
     startDate: Date;
     endDate: Date;
     latitude: number;
-    longtitude: number;
+    longitude: number;
     title: string;
     description: string;
     rating: number;

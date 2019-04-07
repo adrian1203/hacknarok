@@ -7,9 +7,24 @@ import { InitiativeAddComponent } from 'app/entities/initiative/initiative-add.c
 import { HacknarokSharedModule } from 'app/shared';
 import { HttpClientModule } from '@angular/common/http';
 import { DataViewModule } from 'primeng/dataview';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
-    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule, HttpClientModule, DataViewModule],
+    imports: [
+        // AgmCoreModule.forRoot({
+        //     apiKey: "AIzaSyB7FRKcXXnyUp8wNaY1tMi1poCaX6nos4Y",
+        //     libraries: ["places"]
+        // }),
+        // BrowserModule,
+        // FormsModule,
+        // ReactiveFormsModule,
+        RouterModule.forChild(entitiesState),
+        HacknarokSharedModule,
+        HttpClientModule,
+        DataViewModule
+    ],
     declarations: [InitiativeComponent, InitiativeDetailComponent, InitiativeAddComponent],
     entryComponents: [],
     providers: [InitiativeDetailComponent, HttpClientModule, DataViewModule],

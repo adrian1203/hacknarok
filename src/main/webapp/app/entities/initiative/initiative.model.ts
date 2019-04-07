@@ -8,7 +8,7 @@ export class Event {
         public startDate?: Date,
         public endDate?: Date,
         public latitude?: number,
-        public longtitude?: number,
+        public longitude?: number,
         public title?: string,
         public description?: string,
         public rating?: number,
