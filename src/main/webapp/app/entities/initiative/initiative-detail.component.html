@@ -1,21 +1,30 @@
-<div>
-    <button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
-        <fa-icon [icon]="'plus'"></fa-icon> <span>Przyłącz się ;)</span>
-    </button>
-</div>
-Szczegóły wydarzenia
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="event">
 
+<div>
+<button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
+    <fa-icon [icon]="'plus'"></fa-icon> <span>Przyłącz się ;)</span>
+</button>
+</div>
+<div class="row-md jh-entity-details" >
+    <dt><span>Oceń inicjatywę</span></dt>
+    <ngb-rating [(rate)]="currentRate">
+        <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+        </ng-template>
+    </ngb-rating>
+    <pre>Twoja ocena: <b>{{currentRate}}</b></pre>
+    <dt><span>Aktualna ocena</span></dt>
+    <dd>6</dd>
+</div>
+<div>
+    <div>
+        <div *ngIf="event">
             <dl class="row-md jh-entity-details">
                 <dt><span>Nazwa inicjatywy</span></dt>
                 <dd>{{event.title}}</dd>
                 <dt><span>Opis inicjatywy</span></dt>
                 <dd>{{event.description}}</dd>
                 <dt><span>Organizator</span></dt>
-                <dt><span>Ocena</span></dt>
-                <dd>{{event.rating}}</dd>
+                <dd>{{event.creator.firstName}} {{event.creator.lastName}} </dd>
                 <dt><span>Data utworzenia</span></dt>
                 <dd>{{event.createDate | date:'dd/MM/yy HH:mm'}}</dd>
                 <dt><span>Data rozpoczęcia</span></dt>
@@ -26,51 +35,41 @@ Szczegóły wydarzenia
                 <dd>{{event.latitude}}</dd>
                 <dt><span>Longtitude</span></dt>
                 <dd>{{event.longtitude}}</dd>
-            </dl>
-            <button type="submit"
-                    routerLink="../"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+                <dt>Zapisani użytkownicy</dt>
+
         </div>
     </div>
 </div>
+<p class="font-weight-bold">Zdjęcia</p>
+<div class="row"  >
+        <div class="col-sm" >
+            <img src="../../../content/images/las3.jpg"alt="" style="margin:10px;">
+        </div>
+        <div class="col-sm">
+                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+
+        </div>
+        <div class="col-sm">
+                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+
+        </div>
+      </div>
 
 
-Zapisanie Użytkownicy
+<p class="font-weight-bold">Zapisani użytkownicy</p>
+<div class="row"  >
+        <div *ngFor="let user of event.participants;" class="col-sm-3 border border-primary"  >
+            Imię <b>{{user.firstName}}</b> <br>
+            Nazwisko <b>{{user.lastName}}</b><br>
+        </div>
+      </div>
+
 <div>
-    <div class="table-responsive" >
-        <table class="table table-striped">
+    <button type="submit"
+            routerLink="../"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+    </button>
+</div>
 
-            <tbody *ngIf="event">
-            <tr *ngFor="let user of event.participants;">
-                <div class="col-sm">
-                    Login <b>{{user.login}}</b>
-                </div>
-            </tr>
-            </tbody>
-        </table>
 
-    </div>
-    <div>
-        Oceń wydarzenie
-        <form name="editForm" role="form" novalidate (ngSubmit)="saveNote()" #editForm="ngForm">
-            <h2 id="myUserLabel">
-                Dodaj nową inicjatywę
-            </h2>
-            <div>
-                <div class="form-group">
-                    <label>Ocena aplikacji</label>
-                    <input type="text" class="form-control" name="title" #title="ngModel"
-                           [(ngModel)]="node" maxlength="50" required>
-                </div>
-            </div>
-            <div>
-                <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Zapisz ocenę</span>
-                </button>
-            </div>
-
-        </form>
-
-    </div>

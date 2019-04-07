@@ -9,9 +9,11 @@ import { Event } from './initiative.model';
 })
 export class InitiativeComponent implements OnInit {
     events: Event[];
+    pictureSrc: any[] = ['../../../content/images/las3.jpg', '../../../content/images/las1.jpeg', '../../../content/images/szkola1.JPG'];
     constructor(private initativeService: InitiativeService) {}
 
     ngOnInit() {
+        this.pictureSrc;
         this.initativeService.getEvent().subscribe(res => {
             console.log(res);
             this.events = res;

@@ -27,11 +27,7 @@ export class InitiativeDetailComponent implements OnInit {
 
     ngOnInit() {
         this.event = new Event();
-        this.router.snapshot.paramMap.get('id');
-        console.log(this.router.snapshot.paramMap.get('id'));
         this.id = parseInt(this.router.snapshot.paramMap.get('id'));
-        //console.log(this.router.snparams['id']);
-        console.log(this.id);
         this.initiativeService.getEventById(this.id).subscribe(res => {
             console.log(res);
             this.event = res;
@@ -54,4 +50,30 @@ export class InitiativeDetailComponent implements OnInit {
             console.log(res);
         });
     }
+}
+
+@Component({
+    selector: 'ngbd-rating-template',
+    styles: [
+        `
+            .star {
+                font-size: 1.5rem;
+                color: #b0c4de;
+            }
+            .filled {
+                color: #1e90ff;
+            }
+            .bad {
+                color: #deb0b0;
+            }
+            .filled.bad {
+                color: #ff1e1e;
+            }
+        `
+    ]
+})
+export class NgbdRatingTemplate {
+    constructor(private initiativeService: InitiativeService, private router: ActivatedRoute) {}
+
+    currentRate = 6;
 }
