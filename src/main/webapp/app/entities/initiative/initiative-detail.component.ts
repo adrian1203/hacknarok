@@ -27,11 +27,7 @@ export class InitiativeDetailComponent implements OnInit {
 
     ngOnInit() {
         this.event = new Event();
-        this.router.snapshot.paramMap.get('id');
-        console.log(this.router.snapshot.paramMap.get('id'));
         this.id = parseInt(this.router.snapshot.paramMap.get('id'));
-        //console.log(this.router.snparams['id']);
-        console.log(this.id);
         this.initiativeService.getEventById(this.id).subscribe(res => {
             console.log(res);
             this.event = res;

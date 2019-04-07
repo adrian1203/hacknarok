@@ -1,26 +1,65 @@
 
 <div>
-<h2>
-    <b><span id="user-management-page-heading">Nasze atulalne inicjawy</span></b> 
+<h1>
+    <b><span id="user-management-page-heading">Nasze aktulalne inicjatywy w serwisie</span></b> 
     <button class="btn btn-primary float-right jh-create-entity" [routerLink]="'../initiative-add'">
         <fa-icon [icon]="'plus'"></fa-icon> <span>Dodaj nową inicjatywę</span>
     </button>
-</h2>
+</h1>
 </div>
-<div>
+  <div>
+        <form class="form-inline" role="form">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                
+                            <input type="text" class="form-control" placeholder="Lokalizacja" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                
+                            <input type="text" class="form-control" placeholder="Data wydarzenia" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                    
+                                <input type="text" class="form-control" placeholder="Nazwa wydarzenia" />
+                            </div>
+                        </div>
+                    
+                    <div class="form-group col-md-3">
+                            <button class="btn btn-primary jh-create-entity">
+                                    <fa-icon [icon]="'fa-search'"></fa-icon> <span>Wyszkuaj</span>
+                                </button>
+                    </div>
+                    <div></div>
+                    <br>
+                  
+                </div>
+                </form>
+  </div>
     <div class="table-responsive" >
         <table class="table table-striped">
 
        <tbody *ngIf="events">
-        <tr *ngFor="let event of events;">
+           <tr></tr>
+           <tr></tr>
+        <tr *ngFor="let event of events; let i = index">
             <div class="row"  >
                 <div class="col-sm" >
-                    <img src="http://ecodan.eu/wp-content/uploads/2015/09/piktogram5.png" alt="">
+                    <img src={{pictureSrc[i%3]}} alt="" style="margin:10px;">
                 </div>
                 <div class="col-sm">
-                   <h3>Tytuł:  <b>{{event.title}}</b></h3>
-                 <b>Data rozpoczęcia:</b>  {{event.startDate | date:'dd/MM/yy HH:mm'}} <br>
+                    <br>
+                   <h3> <p class="font-weight-bold">{{event.title}}</p> </h3>
+                 <b>Data rozpoczęcia: </b>   {{event.startDate | date:'dd/MM/yy HH:mm'}} <br>
                   <b>Data zakończenia:</b>  {{event.endDate | date:'dd/MM/yy HH:mm'}}   <br>
+                  <b>Ocena wydarzenia:</b>  {{5+ i%2}}   <br>
+                  <b>Ilość  uczestników:</b>  {{event.participants?.length + 1}}   <br>
+
                 </div>
                 <div class="col-sm">
                     <br>
@@ -29,23 +68,30 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">Zobacz szczegóły</span>
+                            <span class="d-none d-md-inline">Zobacz więcej szczegółów</span>
                         </button>
                 </div>
               </div>
 <br>
         </tr>
        </tbody>
-
-    <!-- <div *ngIf="ofertaZakupus">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
-    </div> -->
 </table>
 
 </div>
-</div>
+<!-- <div *ngIf="events">
+    Tutaj
+        <p-dataView [value]="events">
+            Tutaj
+                <ng-template let-car pTemplate="listItem">
+                    <div>
+                        {{car.id}}
+                    </div>
+                </ng-template>
+                <ng-template let-car pTemplate="gridItem">
+                    <div class="ui-g-12 ui-md-3">
+                        {{car.title}}
+                    </div>
+                </ng-template>
+            </p-dataView>
+
+</div> -->

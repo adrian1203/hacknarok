@@ -1,32 +1,31 @@
-
 <div>
-<button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
-    <fa-icon [icon]="'plus'"></fa-icon> <span>Przyłącz się ;)</span>
-</button>
+    <h2>Szczegóły inicjatywy</h2>
+    <button class="btn btn-primary float-right jh-create-entity" (click)="addToEvent()">
+        <fa-icon [icon]="'user-plus'"></fa-icon>
+        <span>Przyłącz się :)</span>
+    </button>
+</div>
+<div class="row-md jh-entity-details" >
+    <dt><span>Oceń inicjatywę</span></dt>
+    <ngb-rating [(rate)]="currentRate">
+        <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+        </ng-template>
+    </ngb-rating>
+    <pre>Twoja ocena: <b>{{currentRate}}</b></pre>
+    <dt><span>Aktualna ocena</span></dt>
+    <dd>6</dd>
 </div>
 <div>
-    <p>Oceń to wydarzenie</p>
-
-<ngb-rating [(rate)]="currentRate">
-  <ng-template let-fill="fill" let-index="index">
-    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-  </ng-template>
-</ngb-rating>
-<pre>Rate: <b>{{currentRate}}</b></pre>
-</div>
-Szczegóły wydarzenia
-<div class="row justify-content-center">
-    <div >
+    <div>
         <div *ngIf="event">
-           
             <dl class="row-md jh-entity-details">
                 <dt><span>Nazwa inicjatywy</span></dt>
                 <dd>{{event.title}}</dd>
                 <dt><span>Opis inicjatywy</span></dt>
                 <dd>{{event.description}}</dd>
                 <dt><span>Organizator</span></dt>
-                <dt><span>Ocena</span></dt>
-                <dd>{{event.rating}}</dd>
+                <dd>{{event.creator.firstName}} {{event.creator.lastName}} </dd>
                 <dt><span>Data utworzenia</span></dt>
                 <dd>{{event.createDate | date:'dd/MM/yy HH:mm'}}</dd>
                 <dt><span>Data rozpoczęcia</span></dt>
@@ -37,32 +36,41 @@ Szczegóły wydarzenia
                 <dd>{{event.latitude}}</dd>
                 <dt><span>Longtitude</span></dt>
                 <dd>{{event.longtitude}}</dd>
-            </dl>
-            <button type="submit"
-                    routerLink="../"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+                <dt>Zapisani użytkownicy</dt>
+    
         </div>
     </div>
 </div>
+<p class="font-weight-bold">Zdjęcia</p> 
+<div class="row"  >
+        <div class="col-sm" >
+            <img src="../../../content/images/las3.jpg"alt="" style="margin:10px;">
+        </div>
+        <div class="col-sm">
+                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+
+        </div>
+        <div class="col-sm">
+                <img src="../../../content/images/las3.jpg" alt="" style="margin:10px;">
+
+        </div>
+      </div>
 
 
-Zapisanie Użytkownicy
+<p class="font-weight-bold">Zapisani użytkownicy</p>
+<div class="row"  >
+        <div *ngFor="let user of event.participants;" class="col-sm-3 border border-primary"  >
+            Imię <b>{{user.firstName}}</b> <br>
+            Nazwisko <b>{{user.lastName}}</b><br>
+        </div>    
+      </div> 
+
 <div>
-    <div class="table-responsive" >
-        <table class="table table-striped">
-
-       <tbody *ngIf="event">
-        <tr *ngFor="let user of event.participants;">
-           <div class="col-sm">
-         Imię <b>{{user.login}}</b>
-         Nazwisko <b>{{user.login}}</b>
-         </div>
-        </tr>
-       </tbody>
-</table>
-
+    <button type="submit"
+            routerLink="../"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+    </button>
 </div>
 
 

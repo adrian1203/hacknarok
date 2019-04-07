@@ -6,12 +6,13 @@ import { InitiativeDetailComponent } from 'app/entities/initiative/initiative-de
 import { InitiativeAddComponent } from 'app/entities/initiative/initiative-add.component';
 import { HacknarokSharedModule } from 'app/shared';
 import { HttpClientModule } from '@angular/common/http';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
-    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule, HttpClientModule],
+    imports: [RouterModule.forChild(entitiesState), HacknarokSharedModule, HttpClientModule, DataViewModule],
     declarations: [InitiativeComponent, InitiativeDetailComponent, InitiativeAddComponent],
     entryComponents: [],
-    providers: [InitiativeDetailComponent, HttpClientModule],
+    providers: [InitiativeDetailComponent, HttpClientModule, DataViewModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HacknarokEntityModule {}
