@@ -68,10 +68,17 @@ public class EventService {
         Optional<Event> event=eventRepository.findById(eventId);
         Double oldRate=event.get().getRating();
         Integer oldRateNumber=event.get().getRating_number();
-
-        Double newRate=(oldRate*oldRateNumber+rate)/(oldRate+1);
+        Double newRate;
+        Integer newRateNumber;
+        if(oldRate==null){
+            newRate=Double.valueOf(rate);
+            newRateNumber=1;
+        }else {
+            newRate = (oldRate * oldRateNumber + rate) / (oldRate + 1);
+            newRateNumber=oldRateNumber+1;
+        }
         event.get().setRating(newRate);
-        event.get().setRating_number(oldRateNumber+1);
+        event.get().setRating_number(newRateNumber);
         eventRepository.save(event.get());
         return event.get();
     }
